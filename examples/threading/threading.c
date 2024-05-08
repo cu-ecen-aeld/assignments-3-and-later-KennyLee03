@@ -47,11 +47,9 @@ bool start_thread_obtaining_mutex(pthread_t *thread, pthread_mutex_t *mutex, int
      * See implementation details in threading.h file comment block
      */
     int rc = 0;
-    struct thread_data *thread_param = {
-        0,
-    };
+    struct thread_data *thread_param = malloc(sizeof(thread_param));
 
-    if (malloc(sizeof(thread_param)) == NULL)
+    if (thread_param == 0)
     {
         ERROR_LOG("Cannot allocate memory for thread_data");
         return false;
