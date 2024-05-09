@@ -23,6 +23,7 @@ else
 	NUMFILES=$1
 	WRITESTR=$2
 	WRITEDIR=/tmp/aeld-data/$3
+	username=$(cat /etc/finder-app/conf/username.txt)
 fi
 
 MATCHSTR="The number of files are ${NUMFILES} and the number of matching lines are ${NUMFILES}"
@@ -56,6 +57,8 @@ for i in $( seq 1 $NUMFILES)
 do
 	./writer "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
+
+finder.sh "$WRITEDIR" "$WRITESTR" > /tmp/assignment4-result.txt
 
 OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
 
